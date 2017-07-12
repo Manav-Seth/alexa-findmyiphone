@@ -53,12 +53,6 @@ def findUserIphone(user):
     email, passwd = USERS[user]
     api = PyiCloudService(email, passwd)   
 
-    if api.requires_2fa:
-        return response(("This account requires two factor authentication, which "
-                         "puts you in an odd place, because you need your phone to "
-                         "authorize for two factor authentication. I cannot help "
-                         "you find your iphone."))
-
     phones = [d for d in api.devices if d.content['deviceClass'] == 'iPhone']
 
     if len(phones) < 1:
