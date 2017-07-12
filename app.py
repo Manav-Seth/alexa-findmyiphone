@@ -1,29 +1,14 @@
-"""
-This is a WSGI script that will take responses from Amazon's Echo/Alexa.
-"""
+#!/usr/bin/env python
+
 import os, sys
-
-# Change working directory so relative paths (and template lookup) work again
-os.chdir(os.path.dirname(__file__))
-activate_this = os.path.dirname(os.path.abspath(__file__)) + \
-                '/venv/bin/activate_this.py'
-execfile(activate_this, dict(__file__=activate_this))
-path = os.path.dirname(__file__)
-if path not in sys.path:
-    sys.path.append(path)
-
-import bottle
-from bottle import request, post
 from pyicloud import PyiCloudService
 from pyicloud.exceptions import PyiCloudFailedLoginException
 import difflib
 from users import USERS
 
-
-@post('/')
-def findIphone():
+def findIphone(event):
     try:
-        intent = request.json['request']['intent']
+        intent = event['request']['intent']
         if intent['name'] == 'FindIphone':
             user = intent['slots']['User']['value']
             return findUserIphone(user)
@@ -34,12 +19,6 @@ def findIphone():
 
     return response(
         "No idea what you asked for. Try saying, Find My iPhone, John.")
-
-
-# run bottle
-# do not remove the application assignment (wsgi won't work)
-application = bottle.default_app()
-
 
 def findUserIphone(user):
     user = user.lower()
@@ -76,3 +55,6 @@ def response(msg):
         }
     }
 
+
+def lambda_handler(event, context):
+    return findIphone(event)
