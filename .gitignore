@@ -2,3 +2,4 @@ users.py
 *.pyc
 venv/
 sample_request.json
+package.zip
