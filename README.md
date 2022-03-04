@@ -66,7 +66,7 @@ FindIphone to call {User}
 
 ## User Config
 
-Copy `users.example.py` to `users.py` to configure users' iCloud accounts. There is a `USERS` dictionary where each key is the name of the user, and each value is a trtupleie of iCloud username, password and devicename.
+Copy `users.example.py` to `users.py` to configure users' iCloud accounts. There is a `USERS` dictionary where each key is the name of the user, and each value is a trtupleie of iCloud username, password and devicename. example of devicename is iPhone 13 Pro.
 
 ## How to use
 
