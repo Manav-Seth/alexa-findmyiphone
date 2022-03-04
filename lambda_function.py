@@ -29,10 +29,10 @@ def findUserIphone(user):
         return response("I don't know who " + user + " is.")
     
     user = found_user[0]
-    email, passwd = USERS[user]
+    email, passwd, deviceDisplayName = USERS[user]
     api = PyiCloudService(email, passwd)   
 
-    phones = [d for d in api.devices if d.content['deviceClass'] == 'iPhone']
+    phones = [d for d in api.devices if d.content['deviceDisplayName'] == deviceDisplayName]
 
     if len(phones) < 1:
         return response("Sorry, couldn't find any iPhones for " + user)
@@ -40,7 +40,7 @@ def findUserIphone(user):
     for p in phones:
         p.play_sound()
 
-    return response("Calling " + user + "'s iPhone.")
+    return response("Pinging " + user + "'s iPhone.")
 
 
 def response(msg):
