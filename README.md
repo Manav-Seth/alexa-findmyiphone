@@ -5,10 +5,10 @@ This is an Amazon Echo app that will use the "find my iPhone" feature of iCloud 
 Most of the magic is done by [pyicloud](https://github.com/picklepete/pyicloud).
 
 ## About
-This is a Python 2.7 script that can be packaged to Lambda for use as an Alexa skill.
+This is a Python 3.9 script that can be packaged to Lambda for use as an Alexa skill.
 
 ## Requirements
-* Python 2.7
+* Python 3.9
 * Bash (for build, OS X, Linux, Cygwin)
 * pip-installed and configured awscli (uses the `aws lambda update-function-code` function)
 
@@ -26,7 +26,7 @@ pip install -r requirements.txt
 
 **Name:** alexaFindMyIphone
 
-**Runtime:** Python 2.7
+**Runtime:** Python 3.9
 
 Leave the "Edit Code Inline" option selected as it will be replaced with the zipped package on build.
 
@@ -66,11 +66,11 @@ FindIphone to call {User}
 
 ## User Config
 
-Copy `users.example.py` to `users.py` to configure users' iCloud accounts. There is a `USERS` dictionary where each key is the name of the user, and each value is a tuple of iCloud username and password.
+Copy `users.example.py` to `users.py` to configure users' iCloud accounts. There is a `USERS` dictionary where each key is the name of the user, and each value is a trtupleie of iCloud username, password and devicename.
 
 ## How to use
 
-If you configured your app with the given Amazon config, you should be able to say to Alexa: `Alexa, tell Find My iPhone, John` where `John` is the user whose iPhone you are trying to find.
+If you configured your app with the given Amazon config, you should be able to say to Alexa: `Alexa, tell Find My iPhone, John` where `John` is the user whose iPhone you are trying to find. It will then find the iPhone matching the devicename for the user `John`
 
 ## License
 Code licensed under the unlicense. View `LICENSE.txt` for more information.
